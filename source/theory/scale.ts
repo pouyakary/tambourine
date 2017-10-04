@@ -20,13 +20,13 @@ namespace Tambourine {
 
                 private baseNote: Note
                 private halfStepIntervals: number[ ]
-                private notes: Note[ ]
+                private internalNoteStorage: Note[ ]
 
             //
             // ─── CONSTRUCTOR ─────────────────────────────────────────────────
             //
 
-                constructor ( base: Note, halfStepIntervals: number[ ] ) {
+                constructor ( base: Note, ...halfStepIntervals: number[ ] ) {
                     this.baseNote = base
                     this.halfStepIntervals = halfStepIntervals
                     this.setNotesBasedOnHalfSteps( )
@@ -43,15 +43,15 @@ namespace Tambourine {
                         intervalSums += interval
                         notes.push( this.baseNote.createNewNoteWithIntervalOf( intervalSums ) )
                     }
-                    this.notes = notes
+                    this.internalNoteStorage = notes
                 }
 
             //
             // ─── GET NOTES ───────────────────────────────────────────────────
             //
 
-                public getNotes( ) {
-                    return this.notes
+                public get notes( ) {
+                    return this.internalNoteStorage
                 }
 
             //
@@ -60,7 +60,15 @@ namespace Tambourine {
 
                 /** Starting from 1 as natural note numbers */
                 public getNote ( no: number ) {
-                    return this.notes[ no - 1 ]
+                    return this.internalNoteStorage[ no - 1 ]
+                }
+
+            //
+            // ─── GET NOTE NAMES ──────────────────────────────────────────────
+            //
+
+                public get noteNames ( ) {
+                    return this.notes.map( x => x.name )
                 }
 
             // ─────────────────────────────────────────────────────────────────
