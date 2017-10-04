@@ -25,7 +25,7 @@ namespace Tambourine {
             // ─── CONSTRUCTOR ─────────────────────────────────────────────────
             //
 
-                constructor ( notes: Note[ ] ) {
+                constructor ( ...notes: Note[ ] ) {
                     this.notes = notes
                 }
 
@@ -41,7 +41,7 @@ namespace Tambourine {
                     for ( let index = 1; index < this.notes.length; index++ ) {
                         const currentMIDI =
                             this.notes[ index ].MIDI
-                        this.intervals.push( currentMIDI - lastNoteMIDI )
+                        intervals.push( currentMIDI - lastNoteMIDI )
                         lastNoteMIDI = currentMIDI
                     }
 
