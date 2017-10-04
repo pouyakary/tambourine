@@ -10,10 +10,17 @@
 /// <reference path="lib/scales/minor.ts" />
 
 //
+// ─── TITLE ──────────────────────────────────────────────────────────────────────
+//
+
+    const put = ( ...args: any[ ] ) =>
+        console.log( '>', ...args )
+
+//
 // ─── PARSING NOTE NAME ──────────────────────────────────────────────────────────
 //
 
-    console.log( 'Parsing G#6 note name:', Tambourine.Note.parseNoteName( 'G#6' ) )
+    put( 'Parsing G#6 note name:', Tambourine.Note.parseNoteName( 'G#6' ) )
 
 //
 // ─── NOTES ──────────────────────────────────────────────────────────────────────
@@ -23,14 +30,14 @@
     const E5 = new Tambourine.Note( 'E5' )
     const A5 = new Tambourine.Note( 'A5' )
 
-    console.log( 'MIDI note number of middle A (A5) is', A5.MIDI )
-    console.log( 'Frequency of standard middle A (A5) is', A5.frequency )
+    put( 'MIDI note number of middle A (A5) is', A5.MIDI )
+    put( 'Frequency of standard middle A (A5) is', A5.frequency )
 
 //
 // ─── INTERVALS ──────────────────────────────────────────────────────────────────
 //
 
-    console.log( 'Interval between C and E is', C5.getIntervalTo( E5 ), 'half steps.' )
+    put( 'Interval between C and E is', C5.getIntervalTo( E5 ), 'half steps.' )
 
 //
 // ─── SCALES ─────────────────────────────────────────────────────────────────────
@@ -45,9 +52,9 @@
     const FavoriteBluesScaleForPouya =
         new Tambourine.Scale( C5, 3, 1, 1, 1, 1, 3 )
 
-    console.log( 'C Major has:', CMajor.noteNames )
-    console.log( 'C minor has:', CMinor.noteNames )
-    console.log( "Pouya's favorite Blues Scale has", FavoriteBluesScaleForPouya.noteNames )
+    put( 'C Major has', CMajor.noteNames )
+    put( 'C minor has', CMinor.noteNames )
+    put( "Pouya's favorite Blues Scale has", FavoriteBluesScaleForPouya.noteNames )
 
 //
 // ─── CHORDS ─────────────────────────────────────────────────────────────────────
@@ -56,7 +63,7 @@
     const MajorTriad =
         new Tambourine.Chord( CMajor.Tonic, CMajor.Mediant, CMajor.Dominant )
 
-    console.log( "Intervals of a major triad are", MajorTriad.intervals )
+    put( "Intervals of a major triad are", MajorTriad.intervals )
 
 // ────────────────────────────────────────────────────────────────────────────────
 
