@@ -21,7 +21,7 @@ namespace Tambourine {
     // ─── NOTES ──────────────────────────────────────────────────────────────────────
     //
 
-        const ListOfNoteNames =
+        const ListOfNoteNames: NoteName[ ] =
             [ 'C' , 'C#' , 'D' , 'D#' , 'E' , 'F' , 'F#' , 'G' , 'G#' , 'A', 'A#' , 'B' ]
 
     //
@@ -34,16 +34,16 @@ namespace Tambourine {
             // ─── STORAGE ─────────────────────────────────────────────────────
             //
 
-                private name: NoteName
-                private octave: OctaveNumber
+                private internalNoteName: NoteName
+                private internalOctaveNumber: OctaveNumber
 
             //
             // ─── CONSTRUCTOR ─────────────────────────────────────────────────
             //
 
                 constructor ( name: NoteName, octave: OctaveNumber = 4 ) {
-                    this.setOctave( octave )
-                    this.setName( name )
+                    this.octave = octave
+                    this.name = name
                 }
 
             //
@@ -82,12 +82,11 @@ namespace Tambourine {
 
                 /** Creates a `Note` from a _midi_ note number */
                 public static createNoteByMIDI ( midiNote: number ) {
-                    const octave =
-                        Note.getMIDIOctave( midiNote )
-                    const noteNumber =
-                        Note.getMIDINoteNumber( midiNote, octave )
-
-                    return new Note( noteNumber, octave )
+                    const dummyNote =
+                        new Note('C')
+                    dummyNote.MIDI =
+                        midiNote
+                    return dummyNote
                 }
 
             //
@@ -107,23 +106,31 @@ namespace Tambourine {
             //
 
                 /** Moves the __Octave__ of the current note */
-                public setOctave ( octave: number ) {
+                public set octave ( octave: number ) {
                     if ( Math.floor( octave ) === octave && 0 <= octave && octave < 8 )
-                        this.octave = Math.floor( octave ) as OctaveNumber
+                        this.internalOctaveNumber = Math.floor( octave ) as OctaveNumber
                     else
                         throw `Given octave number "${ octave }" is out of range.`
+                }
+
+                public get octave ( ) {
+                    return this.internalOctaveNumber
                 }
 
             //
             // ─── CHANGE NAME ─────────────────────────────────────────────────
             //
 
-                public setName ( name: NoteName ) {
+                public set name ( name: NoteName ) {
                     const upperNoteName = name.toUpperCase( )
                     if ( upperNoteName in ListOfNoteNames )
-                        this.name = upperNoteName as NoteName
+                        this.internalNoteName = upperNoteName as NoteName
                     else
                         throw "name is not supported"
+                }
+
+                public get name ( ) {
+                    return this.internalNoteName
                 }
 
             //
@@ -131,13 +138,23 @@ namespace Tambourine {
             //
 
                 /** Returns the __MIDI Note Number__ of the current note */
-                public toMIDI ( ) {
+                public get MIDI ( ) {
                     const currentNoteNumber =
-                        ListOfNoteNames.indexOf( this.name )
+                        ListOfNoteNames.indexOf( this.internalNoteName )
                     const currentNoteMIDI =
-                        ( this.octave * 12 ) + currentNoteNumber
+                        ( this.internalOctaveNumber * 12 ) + currentNoteNumber
 
                     return currentNoteMIDI
+                }
+
+                public set MIDI ( midiNote: number ) {
+                    const octave =
+                        Note.getMIDIOctave( midiNote )
+                    const noteNumber =
+                        Note.getMIDINoteNumber( midiNote, octave )
+
+                    this.name = ListOfNoteNames[ noteNumber ]
+                    this.octave = octave
                 }
 
             //
@@ -150,7 +167,7 @@ namespace Tambourine {
                  */
                 public createNewNoteWithIntervalOf ( interval: number ) {
                     const newNoteMIDI =
-                        this.toMIDI( ) + interval
+                        this.MIDI + interval
 
                     if ( !Note.isMIDIInRange( newNoteMIDI ) )
                         throw `New note is not in MIDI range (New MIDI was ${ newNoteMIDI })`
