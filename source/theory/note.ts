@@ -121,9 +121,9 @@ namespace Tambourine {
             // ─── CHANGE NAME ─────────────────────────────────────────────────
             //
 
-                public set name ( name: NoteName ) {
-                    const upperNoteName = name.toUpperCase( )
-                    if ( upperNoteName in ListOfNoteNames )
+                public set name ( newNoteName: NoteName ) {
+                    const upperNoteName = newNoteName.toUpperCase( )
+                    if ( ListOfNoteNames.indexOf( upperNoteName as NoteName ) > -1 )
                         this.internalNoteName = upperNoteName as NoteName
                     else
                         throw "name is not supported"
@@ -173,6 +173,14 @@ namespace Tambourine {
                         throw `New note is not in MIDI range (New MIDI was ${ newNoteMIDI })`
 
                     return Note.createNoteByMIDI( newNoteMIDI )
+                }
+
+            //
+            // ─── GET INTERVAL ────────────────────────────────────────────────
+            //
+
+                public getIntervalTo ( note: Note ) {
+                    return note.MIDI - this.MIDI
                 }
 
             // ─────────────────────────────────────────────────────────────────
