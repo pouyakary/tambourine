@@ -19,7 +19,7 @@ namespace Tambourine {
             //
 
                 constructor ( base: Note ) {
-                    super( base, [ 2, 2, 1, 2, 2, 2 ] )
+                    super( base, 2, 2, 1, 2, 2, 2 )
                 }
 
             //
