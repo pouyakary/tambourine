@@ -16,7 +16,7 @@
     const C = new Tambourine.Note( 'C' )
     const E = new Tambourine.Note( 'E' )
 
-    console.log('MIDI note number of 4th C is:', C.MIDI )
+    console.log( 'MIDI note number of 4th C is:', C.MIDI )
 
 //
 // ─── INTERVALS ──────────────────────────────────────────────────────────────────
@@ -37,8 +37,8 @@
     const FavoriteBluesScaleForPouya =
         new Tambourine.Scale( C, 3, 1, 1, 1, 1, 3 )
 
-    console.log('C Major has:', CMajor.noteNames )
-    console.log('C Minor has:', CMinor.noteNames )
+    console.log( 'C Major has:', CMajor.noteNames )
+    console.log( 'C minor has:', CMinor.noteNames )
     console.log( "Pouya's favorite Blues Scale has:", FavoriteBluesScaleForPouya.noteNames )
 
 //
