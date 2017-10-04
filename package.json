@@ -1,0 +1,12 @@
+{
+  "name": "tambourine",
+  "version": "0.0.1",
+  "description": "Pouya Kary's Harmonizer Engine",
+  "main": "bin/tambourine.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pmkary/tambourine"
+  },
+  "author": "Pouya Kary",
+  "license": "MPL-2.0"
+}
