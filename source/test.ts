@@ -10,32 +10,40 @@
 /// <reference path="lib/scales/minor.ts" />
 
 //
+// ─── PARSING NOTE NAME ──────────────────────────────────────────────────────────
+//
+
+    console.log( 'Parsing G#6 note name:', Tambourine.Note.parseNoteName( 'G#6' ) )
+
+//
 // ─── NOTES ──────────────────────────────────────────────────────────────────────
 //
 
-    const C = new Tambourine.Note( 'C' )
-    const E = new Tambourine.Note( 'E' )
+    const C5 = new Tambourine.Note( 'C5' )
+    const E5 = new Tambourine.Note( 'E5' )
+    const A5 = new Tambourine.Note( 'A5' )
 
-    console.log( 'MIDI note number of 4th C is:', C.MIDI )
+    console.log( 'MIDI note number of middle A (A5) is:', A5.MIDI )
+    console.log( 'Frequency of standard middle A (A5) is', A5.frequency )
 
 //
 // ─── INTERVALS ──────────────────────────────────────────────────────────────────
 //
 
-    console.log( 'Interval between C and E is:', C.getIntervalTo( E ), 'half steps.' )
+    console.log( 'Interval between C and E is:', C5.getIntervalTo( E5 ), 'half steps.' )
 
 //
 // ─── SCALES ─────────────────────────────────────────────────────────────────────
 //
 
     const CMajor =
-        new Tambourine.MajorScale( C )
+        new Tambourine.MajorScale( C5 )
 
     const CMinor =
-        new Tambourine.MinorScale( C )
+        new Tambourine.MinorScale( C5 )
 
     const FavoriteBluesScaleForPouya =
-        new Tambourine.Scale( C, 3, 1, 1, 1, 1, 3 )
+        new Tambourine.Scale( C5, 3, 1, 1, 1, 1, 3 )
 
     console.log( 'C Major has:', CMajor.noteNames )
     console.log( 'C minor has:', CMinor.noteNames )
