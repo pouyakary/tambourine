@@ -15,7 +15,7 @@ namespace Tambourine {
         type MIDINoteNumber =
             0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11
         type OctaveNumber =
-            1 | 2 | 3 | 4 | 5 | 6 | 7
+            0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 9 | 10
 
     //
     // ─── NOTES ──────────────────────────────────────────────────────────────────────
@@ -23,6 +23,10 @@ namespace Tambourine {
 
         const ListOfNoteNames: NoteName[ ] =
             [ 'C' , 'C#' , 'D' , 'D#' , 'E' , 'F' , 'F#' , 'G' , 'G#' , 'A', 'A#' , 'B' ]
+
+        // ../../orchestras/note-name-parser.orchestra
+        const NoteNameParsingRegExp =
+            /^(C#|C|D#|D|E|F#|F|G#|G|A#|A|B)((?:(?:10|[0-9]))?)$/
 
     //
     // ─── NOTE CLASS ─────────────────────────────────────────────────────────────────
@@ -36,14 +40,38 @@ namespace Tambourine {
 
                 private internalNoteName: NoteName
                 private internalOctaveNumber: OctaveNumber
+                private tunning: number
 
             //
             // ─── CONSTRUCTOR ─────────────────────────────────────────────────
             //
 
-                constructor ( name: NoteName, octave: OctaveNumber = 4 ) {
-                    this.octave = octave
-                    this.name = name
+                constructor ( fullName: string  ) {
+                    const { name, octave } =
+                        Note.parseNoteName( fullName.toUpperCase( ) )
+
+                    this.name = name as NoteName
+                    this.octave = octave? octave as OctaveNumber : 5
+
+                    this.tunning = 440.0
+                }
+
+            //
+            // ─── PARSE NAME ──────────────────────────────────────────────────
+            //
+
+                public static parseNoteName ( fullNoteName: string ) {
+                    if ( !NoteNameParsingRegExp.test( fullNoteName ) )
+                        throw "Bad note name: " + fullNoteName
+
+                    const match =
+                        NoteNameParsingRegExp.exec( fullNoteName )
+                    const name =
+                        match![ 1 ]
+                    const octave =
+                        parseInt( match![ 2 ] )
+
+                    return { name, octave }
                 }
 
             //
@@ -107,7 +135,7 @@ namespace Tambourine {
 
                 /** Moves the __Octave__ of the current note */
                 public set octave ( octave: number ) {
-                    if ( Math.floor( octave ) === octave && 0 <= octave && octave < 8 )
+                    if ( Math.floor( octave ) === octave && -1 < octave && octave < 11 )
                         this.internalOctaveNumber = Math.floor( octave ) as OctaveNumber
                     else
                         throw `Given octave number "${ octave }" is out of range.`
@@ -131,6 +159,14 @@ namespace Tambourine {
 
                 public get name ( ) {
                     return this.internalNoteName
+                }
+
+            //
+            // ─── FULL NAME ───────────────────────────────────────────────────
+            //
+
+                public get fullName ( ) {
+                    return this.name + this.octave.toString( )
                 }
 
             //
@@ -181,6 +217,14 @@ namespace Tambourine {
 
                 public getIntervalTo ( note: Note ) {
                     return note.MIDI - this.MIDI
+                }
+
+            //
+            // ─── GET FREQUENCY ───────────────────────────────────────────────
+            //
+
+                public get frequency ( ) {
+                    return Math.pow( 2, ( this.MIDI - 69 ) / 12 ) * this.tunning
                 }
 
             // ─────────────────────────────────────────────────────────────────
