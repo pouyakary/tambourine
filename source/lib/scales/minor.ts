@@ -6,13 +6,13 @@
 /// <reference path="../../theory/scale.ts" />
 /// <reference path="../../theory/note.ts" />
 
-namespace Tambourine {
+namespace Tambourine.ScaleCollection {
 
     //
     // ─── MAJOR SCALES ───────────────────────────────────────────────────────────────
     //
 
-        export class MinorScale extends Scale {
+        export class Minor extends Scale {
 
             //
             // ─── CONSTRUCTOR ─────────────────────────────────────────────────
