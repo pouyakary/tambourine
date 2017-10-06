@@ -71,6 +71,14 @@ namespace Tambourine {
                     return this.notes.map( x => x.name )
                 }
 
+            //
+            // ─── KEY SIGNATURE ───────────────────────────────────────────────
+            //
+
+                public get keySignatures ( ) {
+                    return this.noteNames.filter( name => name.endsWith( '#' ) )
+                }
+
             // ─────────────────────────────────────────────────────────────────
 
         }
