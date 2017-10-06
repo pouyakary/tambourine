@@ -10,7 +10,8 @@
     "scripts": {
         "compile": "tsc",
         "test": "nodes ./tests/test.js",
-        "gen-docs": "typedoc --tsconfig ./tsconfig.json --out ./docs --mode file --name 'Tambourine Framework' --entryPoint Tambourine ./source"
+        "gen-docs": "typedoc --tsconfig ./tsconfig.json --out ./docs --mode file --name 'Tambourine Framework' --entryPoint Tambourine ./source",
+        "full-build": "npm run compile; npm run gen-docs"
     },
     "author": "Pouya Kary",
     "license": "MPL-2.0"
