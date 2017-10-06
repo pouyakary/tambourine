@@ -35,14 +35,12 @@ namespace Tambourine {
 
                 public get intervals ( ) {
                     const intervals = new Array<number>( )
-                    let lastNoteMIDI =
-                        this.notes[ 0 ].MIDI
+                    let lastNote = this.notes[ 0 ]
 
                     for ( let index = 1; index < this.notes.length; index++ ) {
-                        const currentMIDI =
-                            this.notes[ index ].MIDI
-                        intervals.push( currentMIDI - lastNoteMIDI )
-                        lastNoteMIDI = currentMIDI
+                        const currentNote = this.notes[ index ]
+                        intervals.push( lastNote.getDistanceTo( currentNote ) )
+                        lastNote = currentNote
                     }
 
                     return intervals
