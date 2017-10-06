@@ -1,0 +1,229 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Tambourine Framework</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.js" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">Tambourine Framework</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+			</ul>
+			<h1> Tambourine Framework</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<h1 id="tambourine">Tambourine</h1>
+				<p>Tambourine is a framework for writing musical theory software. My main goal is to have a library capable of computing musical theory so that I can write a Hormonizer Engine on top of it. Because this library still doesn&#39;t have a the Hormonizer Engine I call it a music theory framework.</p>
+				<h1 id="installing-it">Installing It</h1>
+				<p>You can simply install Tambourine using npm</p>
+				<pre><code>npm <span class="hljs-keyword">install</span> <span class="hljs-comment">--save tambourine</span>
+</code></pre><p>It works with both web and node.js. So you can use it in web like:</p>
+				<pre><code class="lang-HTML"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"node_modules/tambourine/bin/tambourine.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre>
+				<p>Or importing it in node.js via any style you like:</p>
+				<pre><code class="lang-js"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> Tambourine <span class="hljs-keyword">from</span> <span class="hljs-string">'tambourine'</span>
+</code></pre>
+				<pre><code class="lang-js"><span class="hljs-keyword">const</span> Tambourine = <span class="hljs-built_in">require</span>(<span class="hljs-string">'tambourine'</span>)
+</code></pre>
+				<p>Tambourine also comes with TypeScript type declarations. If your compiler can&#39;t find the type you can simply include it via:</p>
+				<pre><code class="lang-ts"><span class="hljs-comment">/// &lt;reference path="node_modules/tambourine/bin/tambourine.d.ts" /&gt;</span>
+</code></pre>
+				<h1 id="api">API</h1>
+				<h2 id="notes">Notes</h2>
+				<h3 id="creating-notes">Creating Notes</h3>
+				<pre><code class="lang-js"><span class="hljs-keyword">import</span> { Note } <span class="hljs-keyword">from</span> <span class="hljs-string">'tambourine'</span>
+
+<span class="hljs-comment">// Middle C (C5)</span>
+<span class="hljs-keyword">const</span> C5 = <span class="hljs-keyword">new</span> Note(<span class="hljs-string">'C5'</span>)
+
+<span class="hljs-comment">// E#6</span>
+<span class="hljs-keyword">const</span> ESharp6 = <span class="hljs-keyword">new</span> Note(<span class="hljs-string">'E#6'</span>)
+
+<span class="hljs-comment">// Creating a note 4 half steps after C5 which results in creating E5</span>
+<span class="hljs-keyword">const</span> E5 = C5.createNewNoteWithIntervalOf( <span class="hljs-number">4</span> )
+
+<span class="hljs-comment">// Creating note using MIDI number, For example A5 in midi is 69</span>
+<span class="hljs-keyword">const</span> A5 = Note.createNoteByMIDI( <span class="hljs-number">69</span> )
+</code></pre>
+				<h3 id="note-functions">Note Functions</h3>
+				<pre><code class="lang-js"><span class="hljs-keyword">import</span> { Note } <span class="hljs-keyword">from</span> <span class="hljs-string">'tambourine'</span>
+
+<span class="hljs-keyword">const</span> A5 = <span class="hljs-keyword">new</span> Note(<span class="hljs-string">'A5'</span>)
+
+<span class="hljs-comment">// Note Attributes</span>
+A5.frequency    <span class="hljs-comment">// returns 440  (number)</span>
+A5.fullName     <span class="hljs-comment">// returns 'A5' (string)</span>
+A5.name         <span class="hljs-comment">// returns 'A'  (string)</span>
+A5.octave       <span class="hljs-comment">// returns 5    (number)</span>
+A5.MIDI         <span class="hljs-comment">// returns 69   (string)</span>
+
+<span class="hljs-comment">// Note Methods</span>
+A5.getDistanceTo( <span class="hljs-keyword">new</span> Note(<span class="hljs-string">'B5'</span>) ) <span class="hljs-comment">// returns 2 (number) (as half steps)</span>
+</code></pre>
+				<h2 id="scales">Scales</h2>
+				<h3 id="creating-scales">Creating Scales</h3>
+				<pre><code class="lang-js"><span class="hljs-keyword">import</span> { Note, Scale, ScaleCollection } <span class="hljs-keyword">from</span> <span class="hljs-string">'tambourine'</span>
+
+<span class="hljs-comment">// You can create a new Scale by specifying the first note and then</span>
+<span class="hljs-comment">// distance (intervals) between the notes, For example C major has:</span>
+<span class="hljs-comment">// C, D, E, F, G, A, B. first note is 'C' and then distance between</span>
+<span class="hljs-comment">// C and D is 2 half steps, then D and E is 2 half steps, E and F is</span>
+<span class="hljs-comment">// 1 half step and so on. So the notation to create this scale will be:</span>
+
+<span class="hljs-keyword">const</span> C4 = <span class="hljs-keyword">new</span> Note(<span class="hljs-string">'C4'</span>)
+<span class="hljs-keyword">const</span> C4MajorScale = <span class="hljs-keyword">new</span> Scale( C4, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span> )
+
+<span class="hljs-comment">// However to ease your job we provide a collection for scales</span>
+<span class="hljs-keyword">const</span> C5 = <span class="hljs-keyword">new</span> Note(<span class="hljs-string">'C5'</span>)
+<span class="hljs-keyword">const</span> C5MajorScale = <span class="hljs-keyword">new</span> ScaleCollection.Major( C5 )
+
+<span class="hljs-comment">// And Minor scales as well:</span>
+<span class="hljs-keyword">const</span> C5minorScale = <span class="hljs-keyword">new</span> ScaleCollection.Minor( C5 )
+</code></pre>
+				<h3 id="working-with-scales">Working with Scales</h3>
+				<pre><code class="lang-js"><span class="hljs-keyword">import</span> { Note, Scale, ScaleCollection } <span class="hljs-keyword">from</span> <span class="hljs-string">'tambourine'</span>
+
+<span class="hljs-keyword">const</span> E5MajorScale = <span class="hljs-keyword">new</span> ScaleCollection.Major( <span class="hljs-keyword">new</span> Note(<span class="hljs-string">'E5'</span>) )
+
+<span class="hljs-comment">// Properties</span>
+E5MajorScale.noteNames      <span class="hljs-comment">// returns [ 'E', 'F#', 'G#', 'A', 'B', 'C#', 'D#' ]</span>
+                            <span class="hljs-comment">// (string[ ]) - The name of the notes in string</span>
+E5MajorScale.notes          <span class="hljs-comment">// returns an array of Note class instances (Note[])</span>
+E5MajorScale.keySignatures  <span class="hljs-comment">// returns [ 'F#', 'G#', 'C#', 'D#' ] (string[])</span>
+</code></pre>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class=" tsd-kind-module tsd-is-not-exported">
+						<a href="globals.html">Tambourine</a>
+					</li>
+					<li class=" tsd-kind-module tsd-parent-kind-module">
+						<a href="modules/tambourine.scalecollection.html">Tambourine.<wbr>Scale<wbr>Collection</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>
