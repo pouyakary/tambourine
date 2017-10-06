@@ -9,12 +9,12 @@ namespace Tambourine {
     // ─── TYPES ──────────────────────────────────────────────────────────────────────
     //
 
-        type NoteName =
+        export type NoteName =
             'C' | 'C#' | 'D' | 'D#' | 'E' | 'F' | 'F#' | 'G' | 'G#' | 'A' | 'A#' | 'B' |
             'c' | 'c#' | 'd' | 'd#' | 'e' | 'f' | 'f#' | 'g' | 'g#' | 'a' | 'a#' | 'b'
-        type MIDINoteNumber =
+        export type MIDINoteNumber =
             0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11
-        type OctaveNumber =
+        export type OctaveNumber =
             0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 9 | 10
 
     //
