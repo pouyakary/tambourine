@@ -1,12 +1,17 @@
 {
-  "name": "tambourine",
-  "version": "0.0.1",
-  "description": "Pouya Kary's Harmonizer Engine",
-  "main": "bin/tambourine.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/pmkary/tambourine"
-  },
-  "author": "Pouya Kary",
-  "license": "MPL-2.0"
+    "name": "tambourine",
+    "version": "0.0.1",
+    "description": "Pouya Kary's Harmonizer Engine",
+    "main": "bin/tambourine.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/pmkary/tambourine"
+    },
+    "scripts": {
+        "compile": "tsc",
+        "test": "nodes ./tests/test.js",
+        "gen-docs": "typedoc --tsconfig ./tsconfig.json --out ./docs --mode file --name 'Tambourine Framework' --entryPoint Tambourine ./source"
+    },
+    "author": "Pouya Kary",
+    "license": "MPL-2.0"
 }
