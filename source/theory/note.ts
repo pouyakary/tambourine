@@ -215,7 +215,7 @@ namespace Tambourine {
             // ─── GET INTERVAL ────────────────────────────────────────────────
             //
 
-                public getIntervalTo ( note: Note ) {
+                public getDistanceTo ( note: Note ) {
                     return note.MIDI - this.MIDI
                 }
 
