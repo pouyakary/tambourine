@@ -59,7 +59,7 @@ namespace Tambourine {
             //
 
                 /** Starting from 1 as natural note numbers */
-                public getNote ( no: number ) {
+                public getNoteAt ( no: number ) {
                     return this.internalNoteStorage[ no - 1 ]
                 }
 
