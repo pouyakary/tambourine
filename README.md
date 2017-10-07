@@ -32,6 +32,7 @@ Tambourine also comes with TypeScript type declarations. If your compiler can't 
 ```
 
 # API
+__Tambourine's full documentation can be found at [tambourine.kary.us](http://tambourine.kary.us).__
 
 ## Notes
 ### Creating Notes
