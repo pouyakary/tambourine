@@ -4,5 +4,4 @@ install:
 before_script:
   - "npm run compile"
 node_js:
-  - "iojs"
   - "8"
