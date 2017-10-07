@@ -85,7 +85,7 @@ namespace Tambourine {
                     const noteNumber =
                         Note.getMIDINoteNumber( midiNote, octave )
 
-                    return ListOfNoteNames[ noteNumber ] as NoteName
+                    return ( ListOfNoteNames[ noteNumber ] ) + octave.toString( )
                 }
 
             //
