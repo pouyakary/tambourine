@@ -27,31 +27,31 @@ namespace Tambourine.ScaleCollection {
             //
 
                 public get Tonic ( ) {
-                    return this.getNote( 1 )
+                    return this.getNoteAt( 1 )
                 }
 
                 public get Supertonic ( ) {
-                    return this.getNote( 2 )
+                    return this.getNoteAt( 2 )
                 }
 
                 public get MinorMediant ( ) {
-                    return this.getNote( 3 )
+                    return this.getNoteAt( 3 )
                 }
 
                 public get Subdominant ( ) {
-                    return this.getNote( 4 )
+                    return this.getNoteAt( 4 )
                 }
 
                 public get Dominant ( ) {
-                    return this.getNote( 5 )
+                    return this.getNoteAt( 5 )
                 }
 
                 public get MinorSubmediant ( ) {
-                    return this.getNote( 6 )
+                    return this.getNoteAt( 6 )
                 }
 
                 public get Subtonic ( ) {
-                    return this.getNote( 7 )
+                    return this.getNoteAt( 7 )
                 }
 
             // ─────────────────────────────────────────────────────────────────
