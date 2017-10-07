@@ -8,6 +8,8 @@
 /// <reference path="theory/chord.ts" />
 /// <reference path="lib/scales/major.ts" />
 /// <reference path="lib/scales/minor.ts" />
+/// <reference path="../node_modules/@types/node/index.d.ts" />
+
 
 //
 // ─── EXPORT SYSTEM ──────────────────────────────────────────────────────────────
