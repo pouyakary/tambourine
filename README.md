@@ -1,5 +1,8 @@
 
 # Tambourine
+
+![](https://travis-ci.org/pmkary/tambourine.svg?branch=master)
+
 Tambourine is a framework for writing musical theory software. My main goal is to have a library capable of computing musical theory so that I can write a Hormonizer Engine on top of it. Because this library still doesn't have a the Hormonizer Engine I call it a music theory framework.
 
 # Installing It
