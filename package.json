@@ -10,7 +10,8 @@
     "scripts": {
         "compile": "tsc",
         "test": "nodes ./tests/test.js",
-        "gen-docs": "typedoc --tsconfig ./tsconfig.json --out ./docs --mode file --name 'Tambourine Framework' --entryPoint Tambourine ./source",
+        "update-docs": "npm run gen-docs; git add ./docs/**; git commit -m 'UPDATED DOCS'",
+        "gen-docs": "typedoc --tsconfig ./tsconfig.json --out ./docs --mode file --name 'Tambourine Framework' --entryPoint Tambourine ./source;",
         "full-build": "npm run compile; npm run gen-docs"
     },
     "author": "Pouya Kary",
